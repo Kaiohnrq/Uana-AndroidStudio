@@ -28,5 +28,6 @@
     <!-- Backgrounds -->
 
     <color name="darkgray">#2E2E2E</color>
+    <color name="invisible">#00FFFFFF</color>
 
 </resources>
