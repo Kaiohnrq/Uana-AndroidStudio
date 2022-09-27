@@ -80,6 +80,7 @@
             android:layout_marginBottom="10dp"
             android:text="@string/atualizar"
             android:textSize="18sp"
+            android:textStyle="bold"
             tools:ignore="TextContrastCheck" />
 
         <Button
@@ -89,6 +90,7 @@
             android:layout_marginBottom="10dp"
             android:text="@string/deletar"
             android:textSize="18sp"
+            android:textStyle="bold"
             tools:ignore="TextContrastCheck" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

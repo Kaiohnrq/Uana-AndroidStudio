@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/terracotta</item>
         <item name="colorPrimaryVariant">@color/terracotta_dark</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="android:fontFamily">@font/roboto</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/sand</item>
         <item name="colorSecondaryVariant">@color/sand_dark</item>
