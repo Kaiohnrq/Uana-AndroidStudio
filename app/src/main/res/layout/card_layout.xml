@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             tools:text="Nome" />
@@ -29,7 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/black"
             android:textSize="20sp"
             tools:text="Descrição" />
 
@@ -39,7 +37,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:inputType="number"
-            android:textColor="@color/black"
             android:textSize="20sp"
             tools:ignore="TouchTargetSizeCheck"
             tools:text="Código do Produto" />
@@ -49,7 +46,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/black"
             android:textSize="20sp"
             tools:text="Preço" />
 
@@ -58,7 +54,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/black"
             android:textSize="20sp"
             tools:text="Imagem do Produto" />
 
@@ -67,7 +62,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/black"
             android:textSize="20sp"
             tools:text="Estoque" />
 
@@ -76,7 +70,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/black"
             android:textSize="20sp"
             tools:text="Categoria" />
 
