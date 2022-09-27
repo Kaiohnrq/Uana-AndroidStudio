@@ -8,4 +8,7 @@
     <string name="downloadimage">downloadimage</string>
     <string name="cadastro_de_produto">Cadastro de Produto</string>
     <string name="insira_o_link_da_imagem_do_produto">Insira o link da imagem do produto</string>
+    <string name="atualizar">Atualizar</string>
+    <string name="deletar">Deletar</string>
+    <string name="preco">Preço</string>
 </resources>
