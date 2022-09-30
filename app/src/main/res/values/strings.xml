@@ -14,4 +14,12 @@
     <string name="atualizar">Atualizar</string>
     <string name="deletar">Deletar</string>
     <string name="preco">Preço</string>
+    <string name="_00_00">00,00</string>
+    <string name="unid">unid</string>
+    <string name="valor">R$</string>
+    <string name="link_da_imagem_do_produto">link da imagem do produto</string>
+    <string name="nome">Nome:</string>
+    <string name="categoria">Categoria:</string>
+    <string name="categoria2">Categoria:</string>
+    <string name="estoquetext">Estoque:</string>
 </resources>

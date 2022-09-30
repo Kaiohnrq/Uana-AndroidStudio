@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.uana.adapter.ProdutoAdapter
 import com.example.uana.databinding.FragmentFormBinding
-import com.example.uana.model.Produto
+
 
 class FormFragment : Fragment() {
 

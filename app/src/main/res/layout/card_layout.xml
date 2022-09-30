@@ -92,5 +92,6 @@
             android:textSize="18sp"
             android:textStyle="bold"
             tools:ignore="TextContrastCheck" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>
