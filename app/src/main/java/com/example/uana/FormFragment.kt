@@ -63,7 +63,7 @@ class FormFragment : Fragment() {
     ): Boolean {
 
         return !((nome == "" || nome.length < 3 || nome.length > 20) ||
-                (descricao == "" || descricao.length < 5 || descricao.length > 300) ||
+                (descricao == "" || descricao.length < 5 || descricao.length > 1000) ||
                 (preco == "" || preco <= 0.toString() || preco.length > 5) ||
                 (imagemProduto == "" || imagemProduto.length < 10) ||
                 (estoque < 0))

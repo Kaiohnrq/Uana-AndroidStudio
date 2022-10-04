@@ -17,4 +17,6 @@
     <string name="nome">Nome:</string>
     <string name="categoria">Categoria:</string>
     <string name="categoria2">Categoria:</string>
+    <string name="link">Link:</string>
+    <string name="_0">0</string>
 </resources>

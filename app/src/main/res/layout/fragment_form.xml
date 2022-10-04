@@ -51,7 +51,7 @@
         android:inputType="number"
         android:minHeight="48dp"
         android:padding="10dp"
-        android:text="0"
+        android:text="@string/_0"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/spinnerCategoria"
         app:layout_constraintEnd_toEndOf="parent"
@@ -125,7 +125,8 @@
         app:layout_constraintBottom_toTopOf="@+id/editDescricao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/editEstoque" />
+        app:layout_constraintTop_toBottomOf="@+id/editEstoque"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/editDescricao"
@@ -229,7 +230,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="10dp"
-        android:text="Link:"
+        android:text="@string/link"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/editImagemProduto"
         app:layout_constraintEnd_toStartOf="@+id/editImagemProduto"
