@@ -7,6 +7,6 @@ data class Produto(
     val preco: String,
     val imagemProduto: String,
     val estoque: Int,
-    val categoria: String
+    val categoria: Categoria
 ) {
 }

@@ -2,14 +2,17 @@ package com.example.uana
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.uana.databinding.FragmentFormBinding
+import com.example.uana.model.Categoria
 import com.example.uana.model.Produto
 
 
@@ -17,7 +20,6 @@ class FormFragment : Fragment() {
 
     private lateinit var binding: FragmentFormBinding
     private val mainViewModel: MainViewModel by activityViewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +29,11 @@ class FormFragment : Fragment() {
 
 
         binding = FragmentFormBinding.inflate(layoutInflater, container, false)
+
+        mainViewModel.myCategoriaResponse.observe(viewLifecycleOwner) { response ->
+            Log.d("Requisicao", response.body().toString())
+            spinnerCategoria(response.body())
+        }
 
         binding.buttonSalvar.setOnClickListener {
             inserirNaLista()
@@ -39,6 +46,7 @@ class FormFragment : Fragment() {
 
         return binding.root
     }
+
 
     private fun validarCampos(
         nome: String,
@@ -77,6 +85,19 @@ class FormFragment : Fragment() {
             Toast.makeText(context, "Verifique os campos", Toast.LENGTH_SHORT).show()
 
         }
+    }
+
+    private fun spinnerCategoria(listCategoria: List<Categoria>?) {
+
+        if(listCategoria != null){
+            binding.spinnerCategoria.adapter =
+                ArrayAdapter(
+                    requireContext(),
+                    androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                    listCategoria
+                )
+        }
+
     }
 
 

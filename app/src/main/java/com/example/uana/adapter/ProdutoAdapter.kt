@@ -30,7 +30,7 @@ class ProdutoAdapter : RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder>(
         holder.binding.textPreco.text = produto.preco
         holder.binding.textImagemProduto.text = produto.imagemProduto
         holder.binding.textEstoque.text = produto.estoque.toString()
-        holder.binding.textCategoria.text = produto.categoria
+        holder.binding.textCategoria.text = produto.categoria.descricao
     }
 
     override fun getItemCount(): Int {
