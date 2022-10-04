@@ -25,6 +25,7 @@ class ProdutoFragment : Fragment() {
 
         binding = FragmentProdutoBinding.inflate(layoutInflater, container, false)
 
+        mainViewModel.listProduto()
 
         val adapter = ProdutoAdapter()
         binding.recyclerProduto.layoutManager = LinearLayoutManager(context)
@@ -35,7 +36,12 @@ class ProdutoFragment : Fragment() {
             findNavController().navigate(R.id.action_produtoFragment_to_formFragment)
         }
 
-        // Inflate the layout for this fragment
+        mainViewModel.myProdutoResponse.observe(viewLifecycleOwner) { response ->
+            if (response.body() != null) {
+                adapter.setList(response.body()!!)
+            }
+        }
+
         return binding.root
     }
 
