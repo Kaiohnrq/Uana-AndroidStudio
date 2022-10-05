@@ -24,4 +24,14 @@
     <string name="estoquetext">Estoque:</string>
     <string name="link">Link:</string>
     <string name="_0">0</string>
+    <string name="categoria3">Categoria:</string>
+    <string name="qty">Qty:</string>
+    <string name="zero">0</string>
+    <string name="comprar_agora">Comprar Agora</string>
+    <string name="adicionar_ao_carrinho">Adicionar ao Carrinho</string>
+    <string name="descricao_do_produto">Descrição do Produto</string>
+    <string name="real">R$</string>
+    <string name="botao_add">botão add</string>
+    <string name="botao_remove">botão remove</string>
+    <string name="Required" />
 </resources>

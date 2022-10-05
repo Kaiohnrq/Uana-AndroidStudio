@@ -1,6 +1,7 @@
 package com.example.uana
 
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -35,13 +36,19 @@ class FormFragment : Fragment() {
 
         mainViewModel.listCategoria()
 
+        nomeFocusListener()
+        precoFocusListener()
+        estoqueFocusListener()
+        descricaoFocusListener()
+        imagemProdutoFocusListener()
+
         mainViewModel.myCategoriaResponse.observe(viewLifecycleOwner) { response ->
             Log.d("Requisicao", response.body().toString())
             spinnerCategoria(response.body())
         }
 
         binding.buttonSalvar.setOnClickListener {
-            inserirNoBanco()
+            submittForm()
         }
 
         binding.buttonCancelar.setOnClickListener {
@@ -49,51 +56,207 @@ class FormFragment : Fragment() {
         }
 
 
+
         return binding.root
     }
 
+    private fun nomeFocusListener() {
 
-    private fun validarCampos(
-        nome: String,
-        descricao: String,
-        preco: String,
-        imagemProduto: String,
-        estoque: Int
+        binding.editNome.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
+                binding.nomeContainer.helperText = validNome()
+            }
+        }
+    }
 
-    ): Boolean {
+    private fun validNome(): String? {
 
-        return !((nome == "" || nome.length < 3 || nome.length > 20) ||
-                (descricao == "" || descricao.length < 5 || descricao.length > 1000) ||
-                (preco == "" || preco <= 0.toString() || preco.length > 5) ||
-                (imagemProduto == "" || imagemProduto.length < 10) ||
-                (estoque < 0))
+        val nomeText = binding.editNome.text.toString()
+        if (nomeText == "" || nomeText.length < 3 || nomeText.length > 20) {
+            return "Digite um nome válido"
+        }
+        return null
+    }
+
+
+    private fun precoFocusListener() {
+
+        binding.editPreco.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
+                binding.precoContainer.helperText = validPreco()
+            }
+        }
+    }
+
+    private fun validPreco(): String? {
+
+        val preco = binding.editPreco.text.toString()
+        if (preco == "" || preco <= 0.toString() || preco.length > 5) {
+            return "Digite um preço válido"
+        }
+        return null
+    }
+
+    private fun estoqueFocusListener() {
+
+        binding.editEstoque.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
+                binding.estoqueContainer.helperText = validEstoque()
+            }
+        }
+    }
+
+    private fun validEstoque(): String? {
+
+        val estoque = binding.editEstoque.text.toString()
+
+        if (estoque.isNotEmpty() || estoque.isNotBlank()) {
+            var estoqueInt = estoque.toInt()
+
+            if (estoqueInt < 0 || estoqueInt > 100000) {
+                return "Digite um valor válido"
+            }
+        }
+
+
+        return null
+    }
+
+    private fun descricaoFocusListener() {
+
+        binding.editDescricao.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
+                binding.descricaoContainer.helperText = validDescricao()
+            }
+        }
+    }
+
+    private fun validDescricao(): String? {
+
+        val descricao = binding.editDescricao.text.toString()
+        if (descricao == "" || descricao.length < 5 || descricao.length > 2000) {
+            return "Digite um a descrição válida"
+        }
+        return null
+    }
+
+    private fun imagemProdutoFocusListener() {
+
+        binding.editImagemProduto.setOnFocusChangeListener { _, focused ->
+            if (!focused) {
+                binding.linkContainer.helperText = validImagemProduto()
+            }
+        }
+    }
+
+    private fun validImagemProduto(): String? {
+
+        val imagemProduto = binding.editImagemProduto.text.toString()
+        if (imagemProduto == "" || imagemProduto.length < 10) {
+            return "Digite um link válido"
+        }
+        return null
+    }
+
+    private fun submittForm() {
+
+        binding.nomeContainer.helperText = validNome()
+        binding.precoContainer.helperText = validPreco()
+        binding.estoqueContainer.helperText = validEstoque()
+        binding.descricaoContainer.helperText = validDescricao()
+        binding.linkContainer.helperText = validImagemProduto()
+
+
+        val validNome = binding.nomeContainer.helperText == null
+        val validPreco = binding.precoContainer.helperText == null
+        val validEstoque = binding.estoqueContainer.helperText == null
+        val validDesc = binding.descricaoContainer.helperText == null
+        val validLink = binding.linkContainer.helperText == null
+
+        if (validNome && validPreco && validEstoque && validDesc && validLink) {
+            enviarForm()
+        } else {
+            invalidForm()
+        }
+    }
+
+    private fun invalidForm() {
+        var message = ""
+
+        if (binding.nomeContainer.helperText != null) {
+            message += "\n\nEmail: " + binding.nomeContainer.helperText
+        }
+
+        if (binding.precoContainer.helperText != null) {
+            message += "\n\nPreço: " + binding.precoContainer.helperText
+        }
+
+        if (binding.estoqueContainer.helperText != null) {
+            message += "\n\nEstoque: " + binding.estoqueContainer.helperText
+        }
+
+        if (binding.descricaoContainer.helperText != null) {
+            message += "\n\nDescrição: " + binding.descricaoContainer.helperText
+        }
+
+        if (binding.linkContainer.helperText != null) {
+            message += "\n\nLink: " + binding.linkContainer.helperText
+        }
+
+        AlertDialog.Builder(context)
+            .setTitle("Cadastro Inválido")
+            .setMessage(message)
+            .setPositiveButton("Ok") { _, _ ->
+                //faça nada
+            }
+            .show()
 
     }
 
-    private fun inserirNoBanco() {
+
+    private fun enviarForm() {
 
         val nome = binding.editNome.text.toString()
         val desc = binding.editDescricao.text.toString()
         val price = binding.editPreco.text.toString()
         val imagem = binding.editImagemProduto.text.toString()
-        val estoq = binding.editEstoque.text.toString().toInt()
+        val estoq = binding.editEstoque.text.toString()
         val categoria = Categoria(categoriaSelecionada, " ", null)
 
-        if (validarCampos(nome, desc, price, imagem, estoq)) {
 
-            val produto = Produto(0, nome, desc, 0, price, imagem, 0, categoria)
-            mainViewModel.addProduto(produto)
+        var message = "Email:" + binding.editNome.text
+        message += "\nPreço:" + binding.editPreco.text
+        message += "\nEstoque:" + binding.editEstoque.text
+        message += "\nDescrição:" + binding.editDescricao.text
+        message += "\nLink:" + binding.editImagemProduto.text
 
-            Toast.makeText(context, "Produto criado", Toast.LENGTH_SHORT).show()
+        AlertDialog.Builder(context)
+            .setTitle("Produto Criado")
+            .setMessage(message)
+            .setPositiveButton("Produto criado com Sucesso!") { _, _ ->
+                binding.editNome.text = null
+                binding.editPreco.text = null
+                binding.editEstoque.text = null
+                binding.editDescricao.text = null
+                binding.editImagemProduto.text = null
 
-            findNavController().navigate(R.id.action_formFragment_to_produtoFragment)
+                binding.nomeContainer.helperText = getString(R.string.Required)
+                binding.precoContainer.helperText = getString(R.string.Required)
+                binding.estoqueContainer.helperText = getString(R.string.Required)
+                binding.descricaoContainer.helperText = getString(R.string.Required)
+                binding.linkContainer.helperText = getString(R.string.Required)
 
-        } else {
+            }
+            .show()
 
-            Toast.makeText(context, "Verifique os campos", Toast.LENGTH_SHORT).show()
+        val produto = Produto(0, nome, desc, 0, price, imagem, estoq.toInt(), categoria)
+        mainViewModel.addProduto(produto)
 
-        }
+        findNavController().navigate(R.id.action_formFragment_to_produtoFragment)
+
+
     }
+
 
     private fun spinnerCategoria(listCategoria: List<Categoria>?) {
 

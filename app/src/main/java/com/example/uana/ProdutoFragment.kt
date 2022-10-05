@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.uana.adapter.ProdutoAdapter
 import com.example.uana.databinding.FragmentProdutoBinding
@@ -28,7 +29,7 @@ class ProdutoFragment : Fragment() {
         mainViewModel.listProduto()
 
         val adapter = ProdutoAdapter()
-        binding.recyclerProduto.layoutManager = LinearLayoutManager(context)
+        binding.recyclerProduto.layoutManager = GridLayoutManager(context, 2)
         binding.recyclerProduto.adapter = adapter
         binding.recyclerProduto.setHasFixedSize(true)
 
@@ -41,6 +42,8 @@ class ProdutoFragment : Fragment() {
                 adapter.setList(response.body()!!)
             }
         }
+
+
 
         return binding.root
     }

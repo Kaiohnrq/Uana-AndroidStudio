@@ -30,6 +30,7 @@ class MainViewModel @Inject constructor
     val myProdutoResponse: LiveData<Response<List<Produto>>> =
         _myProdutoResponse
 
+
     fun listCategoria() {
         viewModelScope.launch {
             try {
@@ -65,5 +66,6 @@ class MainViewModel @Inject constructor
         }
 
     }
+
 
 }

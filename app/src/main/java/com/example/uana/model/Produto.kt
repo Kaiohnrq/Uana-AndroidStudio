@@ -8,6 +8,23 @@ data class Produto(
     val preco: String,
     val imagemProduto: String,
     val estoque: Int,
-    val categoria: Categoria
+    val categoria: Categoria,
 ) {
+    var quantidade = 0
+
+
+
+    fun addQuantidade(){
+
+        quantidade++
+
+    }
+
+    fun remQuantidade(){
+
+        if (quantidade > 0){
+            quantidade --
+        }
+
+    }
 }

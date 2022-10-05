@@ -29,5 +29,8 @@
 
     <color name="darkgray">#2E2E2E</color>
     <color name="invisible">#00FFFFFF</color>
+    <color name="terraacora_medium">#F5776E</color>
+    <color name="Terracora_claro">#FAB9AD</color>
+    <color name="terracota_claro">#FAB9AD</color>
 
 </resources>

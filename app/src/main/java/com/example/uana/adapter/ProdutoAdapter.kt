@@ -24,13 +24,24 @@ class ProdutoAdapter : RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder>(
 
     override fun onBindViewHolder(holder: ProdutoViewHolder, position: Int) {
         val produto = listProduto[position]
+
         holder.binding.textNome.text = produto.nome
-        holder.binding.textDescricao.text = produto.descricao
-        holder.binding.textCodigoProduto.text = produto.codigoProduto.toString()
         holder.binding.textPreco.text = produto.preco
-        holder.binding.textImagemProduto.text = produto.imagemProduto
-        holder.binding.textEstoque.text = produto.estoque.toString()
-        holder.binding.textCategoria.text = produto.categoria.nome
+        holder.binding.textQuantidade.text = produto.quantidade.toString()
+
+        holder.binding.buttonAdd.setOnClickListener{
+
+            produto.addQuantidade()
+            notifyItemChanged(position)
+        }
+
+        holder.binding.buttonRem.setOnClickListener{
+
+            produto.remQuantidade()
+            notifyItemChanged(position)
+        }
+
+
     }
 
     override fun getItemCount(): Int {

@@ -20,5 +20,6 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
+
     }
 }
