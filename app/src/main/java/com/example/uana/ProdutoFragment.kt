@@ -10,11 +10,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.uana.adapter.ProdutoAdapter
+import com.example.uana.adapter.ProdutoClickListener
 import com.example.uana.databinding.FragmentProdutoBinding
 import com.example.uana.model.Produto
 
 
-class ProdutoFragment : Fragment() {
+class ProdutoFragment : Fragment(), ProdutoClickListener {
 
     private lateinit var binding: FragmentProdutoBinding
     private val mainViewModel: MainViewModel by activityViewModels()
@@ -28,14 +29,16 @@ class ProdutoFragment : Fragment() {
 
         mainViewModel.listProduto()
 
-        val adapter = ProdutoAdapter()
+        val adapter = ProdutoAdapter(this, mainViewModel)
         binding.recyclerProduto.layoutManager = GridLayoutManager(context, 2)
         binding.recyclerProduto.adapter = adapter
         binding.recyclerProduto.setHasFixedSize(true)
 
         binding.floatingAdd.setOnClickListener {
+            mainViewModel.produtoSelecionar = null
             findNavController().navigate(R.id.action_produtoFragment_to_formFragment)
         }
+
 
         mainViewModel.myProdutoResponse.observe(viewLifecycleOwner) { response ->
             if (response.body() != null) {
@@ -46,6 +49,11 @@ class ProdutoFragment : Fragment() {
 
 
         return binding.root
+    }
+
+    override fun onProdutoClickListener(produto: Produto) {
+        mainViewModel.produtoSelecionar = produto
+        findNavController().navigate(R.id.action_produtoFragment_to_formFragment)
     }
 
 

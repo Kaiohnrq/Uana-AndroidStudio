@@ -24,15 +24,17 @@ class FormFragment : Fragment() {
     private lateinit var binding: FragmentFormBinding
     private val mainViewModel: MainViewModel by activityViewModels()
     private var categoriaSelecionada = 0L
+    private var produtoSelecionado: Produto? = null
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
 
     ): View? {
 
 
         binding = FragmentFormBinding.inflate(layoutInflater, container, false)
+
+        carregarDados()
 
         mainViewModel.listCategoria()
 
@@ -61,7 +63,6 @@ class FormFragment : Fragment() {
     }
 
     private fun nomeFocusListener() {
-
         binding.editNome.setOnFocusChangeListener { _, focused ->
             if (!focused) {
                 binding.nomeContainer.helperText = validNome()
@@ -70,9 +71,9 @@ class FormFragment : Fragment() {
     }
 
     private fun validNome(): String? {
-
         val nomeText = binding.editNome.text.toString()
         if (nomeText == "" || nomeText.length < 3 || nomeText.length > 20) {
+
             return "Digite um nome válido"
         }
         return null
@@ -80,7 +81,6 @@ class FormFragment : Fragment() {
 
 
     private fun precoFocusListener() {
-
         binding.editPreco.setOnFocusChangeListener { _, focused ->
             if (!focused) {
                 binding.precoContainer.helperText = validPreco()
@@ -89,7 +89,6 @@ class FormFragment : Fragment() {
     }
 
     private fun validPreco(): String? {
-
         val preco = binding.editPreco.text.toString()
         if (preco == "" || preco <= 0.toString() || preco.length > 5) {
             return "Digite um preço válido"
@@ -98,7 +97,6 @@ class FormFragment : Fragment() {
     }
 
     private fun estoqueFocusListener() {
-
         binding.editEstoque.setOnFocusChangeListener { _, focused ->
             if (!focused) {
                 binding.estoqueContainer.helperText = validEstoque()
@@ -107,9 +105,7 @@ class FormFragment : Fragment() {
     }
 
     private fun validEstoque(): String? {
-
         val estoque = binding.editEstoque.text.toString()
-
         if (estoque.isNotEmpty() || estoque.isNotBlank()) {
             var estoqueInt = estoque.toInt()
 
@@ -203,13 +199,10 @@ class FormFragment : Fragment() {
             message += "\n\nLink: " + binding.linkContainer.helperText
         }
 
-        AlertDialog.Builder(context)
-            .setTitle("Cadastro Inválido")
-            .setMessage(message)
+        AlertDialog.Builder(context).setTitle("Cadastro Inválido").setMessage(message)
             .setPositiveButton("Ok") { _, _ ->
                 //faça nada
-            }
-            .show()
+            }.show()
 
     }
 
@@ -230,43 +223,83 @@ class FormFragment : Fragment() {
         message += "\nDescrição:" + binding.editDescricao.text
         message += "\nLink:" + binding.editImagemProduto.text
 
-        AlertDialog.Builder(context)
-            .setTitle("Produto Criado")
-            .setMessage(message)
-            .setPositiveButton("Produto criado com Sucesso!") { _, _ ->
-                binding.editNome.text = null
-                binding.editPreco.text = null
-                binding.editEstoque.text = null
-                binding.editDescricao.text = null
-                binding.editImagemProduto.text = null
+        if (produtoSelecionado != null) {
 
-                binding.nomeContainer.helperText = getString(R.string.Required)
-                binding.precoContainer.helperText = getString(R.string.Required)
-                binding.estoqueContainer.helperText = getString(R.string.Required)
-                binding.descricaoContainer.helperText = getString(R.string.Required)
-                binding.linkContainer.helperText = getString(R.string.Required)
+            AlertDialog.Builder(context).setTitle("Produto Atualizado").setMessage(message)
+                .setPositiveButton("Produto atualizado com Sucesso!") { _, _ ->
+                    binding.editNome.text != null
+                    binding.editPreco.text != null
+                    binding.editEstoque.text != null
+                    binding.editDescricao.text != null
+                    binding.editImagemProduto.text != null
 
-            }
-            .show()
+                    binding.nomeContainer.helperText = getString(R.string.Required)
+                    binding.precoContainer.helperText = getString(R.string.Required)
+                    binding.estoqueContainer.helperText = getString(R.string.Required)
+                    binding.descricaoContainer.helperText = getString(R.string.Required)
+                    binding.linkContainer.helperText = getString(R.string.Required)
 
-        val produto = Produto(0, nome, desc, 0, price, imagem, estoq.toInt(), categoria)
-        mainViewModel.addProduto(produto)
+                }.show()
 
+            val produto = Produto(
+                produtoSelecionado?.id!!,
+                nome,
+                desc,
+                0,
+                price,
+                imagem,
+                estoq.toInt(),
+                categoria
+            )
+            mainViewModel.addProduto(produto)
+        } else {
+
+            AlertDialog.Builder(context).setTitle("Produto Criado").setMessage(message)
+                .setPositiveButton("Produto criado com Sucesso!") { _, _ ->
+                    binding.editNome.text = null
+                    binding.editPreco.text = null
+                    binding.editEstoque.text = null
+                    binding.editDescricao.text = null
+                    binding.editImagemProduto.text = null
+
+                    binding.nomeContainer.helperText = getString(R.string.Required)
+                    binding.precoContainer.helperText = getString(R.string.Required)
+                    binding.estoqueContainer.helperText = getString(R.string.Required)
+                    binding.descricaoContainer.helperText = getString(R.string.Required)
+                    binding.linkContainer.helperText = getString(R.string.Required)
+
+                }.show()
+
+            val produto = Produto(0, nome, desc, 0, price, imagem, estoq.toInt(), categoria)
+            mainViewModel.addProduto(produto)
+        }
         findNavController().navigate(R.id.action_formFragment_to_produtoFragment)
 
 
+    }
+
+    private fun carregarDados() {
+        produtoSelecionado = mainViewModel.produtoSelecionar
+        var estoque = produtoSelecionado?.estoque
+
+        if (produtoSelecionado != null) {
+            binding.editNome.setText(produtoSelecionado?.nome)
+            binding.editPreco.setText(produtoSelecionado?.preco)
+            binding.editEstoque.setText(estoque!!.toString())
+            binding.editDescricao.setText(produtoSelecionado?.descricao)
+            binding.editImagemProduto.setText(produtoSelecionado?.imagemProduto)
+        }
     }
 
 
     private fun spinnerCategoria(listCategoria: List<Categoria>?) {
 
         if (listCategoria != null) {
-            binding.spinnerCategoria.adapter =
-                ArrayAdapter(
-                    requireContext(),
-                    androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
-                    listCategoria
-                )
+            binding.spinnerCategoria.adapter = ArrayAdapter(
+                requireContext(),
+                androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
+                listCategoria
+            )
             binding.spinnerCategoria.onItemSelectedListener =
                 object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {

@@ -18,4 +18,8 @@ class Repository {
         return RetrofitInstance.api.listProduto()
     }
 
+    suspend fun updateProduto(produto: Produto): Response<Produto>{
+        return RetrofitInstance.api.updateProduto(produto)
+    }
+
 }

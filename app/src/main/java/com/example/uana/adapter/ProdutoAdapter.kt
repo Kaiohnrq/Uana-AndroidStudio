@@ -3,10 +3,14 @@ package com.example.uana.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.uana.MainViewModel
 import com.example.uana.databinding.CardLayoutBinding
 import com.example.uana.model.Produto
 
-class ProdutoAdapter : RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder>(
+class ProdutoAdapter(
+    val produtoClickListener: ProdutoClickListener,
+    val mainViewModel: MainViewModel
+) : RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder>(
 
 
 ) {
@@ -41,6 +45,10 @@ class ProdutoAdapter : RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder>(
             notifyItemChanged(position)
         }
 
+        holder.itemView.setOnClickListener {
+            produtoClickListener.onProdutoClickListener(produto)
+        }
+
 
     }
 
@@ -50,7 +58,7 @@ class ProdutoAdapter : RecyclerView.Adapter<ProdutoAdapter.ProdutoViewHolder>(
 
     fun setList(list: List<Produto>) {
 
-        listProduto = list
+        listProduto = list.sortedByDescending { it.id }
         notifyDataSetChanged()
     }
 }
