@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/home"
+        android:id="@+id/home"
+        android:icon="@drawable/ic_baseline_home_24"/>
+
+    <item android:title="@string/categorias1"
+        android:id="@+id/categories"
+        android:icon="@drawable/ic_baseline_grid_view_24"/>
+
+    <item android:title="@string/menu"
+        android:id="@+id/menu"
+        android:icon="@drawable/ic_baseline_menu_24"/>
+</menu>

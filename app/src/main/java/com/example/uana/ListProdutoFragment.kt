@@ -8,16 +8,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.uana.adapter.ProdutoAdapter
 import com.example.uana.adapter.ProdutoClickListener
-import com.example.uana.databinding.FragmentProdutoBinding
+import com.example.uana.databinding.FragmentListProdutoBinding
 import com.example.uana.model.Produto
 
 
-class ProdutoFragment : Fragment(), ProdutoClickListener {
+class ListProdutoFragment : Fragment(), ProdutoClickListener {
 
-    private lateinit var binding: FragmentProdutoBinding
+    private lateinit var binding: FragmentListProdutoBinding
     private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -25,7 +24,7 @@ class ProdutoFragment : Fragment(), ProdutoClickListener {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentProdutoBinding.inflate(layoutInflater, container, false)
+        binding = FragmentListProdutoBinding.inflate(layoutInflater, container, false)
 
         mainViewModel.listProduto()
 
@@ -33,11 +32,6 @@ class ProdutoFragment : Fragment(), ProdutoClickListener {
         binding.recyclerProduto.layoutManager = GridLayoutManager(context, 2)
         binding.recyclerProduto.adapter = adapter
         binding.recyclerProduto.setHasFixedSize(true)
-
-        binding.floatingAdd.setOnClickListener {
-            mainViewModel.produtoSelecionar = null
-            findNavController().navigate(R.id.action_produtoFragment_to_formFragment)
-        }
 
 
         mainViewModel.myProdutoResponse.observe(viewLifecycleOwner) { response ->
@@ -47,14 +41,11 @@ class ProdutoFragment : Fragment(), ProdutoClickListener {
         }
 
 
-
         return binding.root
     }
 
     override fun onProdutoClickListener(produto: Produto) {
         mainViewModel.produtoSelecionar = produto
-        findNavController().navigate(R.id.action_produtoFragment_to_formFragment)
+        findNavController().navigate(R.id.action_listProdutoFragment_to_descricaoProdutoFragment)
     }
-
-
 }

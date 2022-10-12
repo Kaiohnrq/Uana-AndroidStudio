@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/produtoFragment">
+    app:startDestination="@id/apresentacaoFragment">
 
     <fragment
         android:id="@+id/produtoFragment"
@@ -57,7 +57,17 @@
         android:id="@+id/homeFragment"
         android:name="com.example.uana.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_doacaoFragment"
+            app:destination="@id/doacaoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_listProdutoFragment"
+            app:destination="@id/listProdutoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_descricaoProdutoFragment"
+            app:destination="@id/descricaoProdutoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment2"
         android:name="com.example.uana.LoginFragment"
@@ -66,5 +76,71 @@
         <action
             android:id="@+id/action_loginFragment2_to_cadastroUsuarioFragment"
             app:destination="@id/cadastroUsuarioFragment" />
+        <action
+            android:id="@+id/action_loginFragment2_to_recuperarContaFragment"
+            app:destination="@id/recuperarContaFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/doacaoFragment"
+        android:name="com.example.uana.DoacaoFragment"
+        android:label="fragment_doacao"
+        tools:layout="@layout/fragment_doacao" >
+        <action
+            android:id="@+id/action_doacaoFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/listProdutoFragment"
+        android:name="com.example.uana.ListProdutoFragment"
+        android:label="ListProdutoFragment" >
+        <action
+            android:id="@+id/action_listProdutoFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_listProdutoFragment_to_descricaoProdutoFragment"
+            app:destination="@id/descricaoProdutoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/descricaoProdutoFragment"
+        android:name="com.example.uana.DescricaoProdutoFragment"
+        android:label="fragment_descricao_produto"
+        tools:layout="@layout/fragment_descricao_produto" />
+    <fragment
+        android:id="@+id/categoriaFragment"
+        android:name="com.example.uana.CategoriaFragment"
+        android:label="fragment_categoria"
+        tools:layout="@layout/fragment_categoria" >
+        <action
+            android:id="@+id/action_categoriaFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/apresentacaoFragment"
+        android:name="com.example.uana.ApresentacaoFragment"
+        android:label="fragment_apresentacao"
+        tools:layout="@layout/fragment_apresentacao" >
+        <action
+            android:id="@+id/action_apresentacaoFragment_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/recuperarContaFragment"
+        android:name="com.example.uana.RecuperarContaFragment"
+        android:label="fragment_recuperar_conta"
+        tools:layout="@layout/fragment_recuperar_conta" >
+        <action
+            android:id="@+id/action_recuperarContaFragment_to_loginFragment2"
+            app:destination="@id/loginFragment2"
+            app:popUpTo="@id/loginFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/menuFragment"
+        android:name="com.example.uana.MenuFragment"
+        android:label="fragment_menu"
+        tools:layout="@layout/fragment_menu" />
 </navigation>
