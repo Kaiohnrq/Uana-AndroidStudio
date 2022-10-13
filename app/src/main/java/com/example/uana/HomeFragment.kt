@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.uana.adapter.ProdutoAdapter
 import com.example.uana.adapter.ProdutoClickListener
+import com.example.uana.adapter.ProdutoListAdapter
 import com.example.uana.databinding.FragmentHomeBinding
 import com.example.uana.model.Produto
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -30,7 +31,7 @@ class HomeFragment : Fragment(), ProdutoClickListener  {
 
         mainViewModel.listProduto()
 
-        val adapter = ProdutoAdapter(this, mainViewModel, requireContext())
+        val adapter = ProdutoListAdapter(this, mainViewModel, requireContext())
 
         binding.carouselRecyclerview.adapter = adapter
         binding.carouselRecyclerview.apply {
@@ -39,6 +40,7 @@ class HomeFragment : Fragment(), ProdutoClickListener  {
             setInfinite(true)
             setFlat(true)
         }
+
 
 
         mainViewModel.myProdutoResponse.observe(viewLifecycleOwner) { response ->
@@ -63,6 +65,6 @@ class HomeFragment : Fragment(), ProdutoClickListener  {
 
     override fun onProdutoClickListener(produto: Produto) {
         mainViewModel.produtoSelecionar = produto
-        findNavController().navigate(R.id.action_homeFragment_to_descricaoProdutoFragment)
+        findNavController().navigate(R.id.action_homeFragment_to_descricaoProdFragment)
     }
 }

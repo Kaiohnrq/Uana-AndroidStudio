@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.uana.adapter.ProdutoAdapter
 import com.example.uana.adapter.ProdutoClickListener
+import com.example.uana.adapter.ProdutoListAdapter
 import com.example.uana.databinding.FragmentListProdutoBinding
 import com.example.uana.model.Produto
 
@@ -28,7 +29,7 @@ class ListProdutoFragment : Fragment(), ProdutoClickListener {
 
         mainViewModel.listProduto()
 
-        val adapter = ProdutoAdapter(this, mainViewModel, requireContext())
+        val adapter = ProdutoListAdapter(this, mainViewModel, requireContext())
         binding.recyclerProduto.layoutManager = GridLayoutManager(context, 2)
         binding.recyclerProduto.adapter = adapter
         binding.recyclerProduto.setHasFixedSize(true)
@@ -46,6 +47,6 @@ class ListProdutoFragment : Fragment(), ProdutoClickListener {
 
     override fun onProdutoClickListener(produto: Produto) {
         mainViewModel.produtoSelecionar = produto
-        findNavController().navigate(R.id.action_listProdutoFragment_to_descricaoProdutoFragment)
+        findNavController().navigate(R.id.action_listProdutoFragment_to_descricaoProdFragment)
     }
 }

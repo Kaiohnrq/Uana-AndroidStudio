@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/menuFragment">
+    app:startDestination="@id/apresentacaoFragment">
 
     <fragment
         android:id="@+id/produtoFragment"
@@ -48,7 +48,9 @@
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_cadastroUsuario2Fragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -62,11 +64,11 @@
             android:id="@+id/action_homeFragment_to_listProdutoFragment"
             app:destination="@id/listProdutoFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_descricaoProdutoFragment"
-            app:destination="@id/descricaoProdutoFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_carrinhoFragment"
             app:destination="@id/carrinhoFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_descricaoProdFragment"
+            app:destination="@id/descricaoProdFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment2"
@@ -80,7 +82,12 @@
             app:destination="@id/recuperarContaFragment" />
         <action
             android:id="@+id/action_loginFragment2_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loginFragment2_to_recuperarContaFragment2"
+            app:destination="@id/recuperarContaFragment" />
     </fragment>
     <fragment
         android:id="@+id/doacaoFragment"
@@ -101,13 +108,10 @@
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_listProdutoFragment_to_descricaoProdutoFragment"
-            app:destination="@id/descricaoProdutoFragment" />
+            android:id="@+id/action_listProdutoFragment_to_descricaoProdFragment"
+            app:destination="@id/descricaoProdFragment"
+            app:popUpToInclusive="false" />
     </fragment>
-    <fragment
-        android:id="@+id/descricaoProdutoFragment"
-        android:name="com.example.uana.DescricaoProdutoFragment"
-        tools:layout="@layout/fragment_descricao_produto" />
     <fragment
         android:id="@+id/categoriaFragment"
         android:name="com.example.uana.CategoriaFragment"
@@ -174,4 +178,19 @@
         android:name="com.example.uana.CarrinhoFragment"
         android:label="fragment_carrinho"
         tools:layout="@layout/fragment_carrinho" />
+    <fragment
+        android:id="@+id/descricaoProdFragment"
+        android:name="com.example.uana.DescricaoProdFragment"
+        tools:layout="@layout/fragment_descricao_prod">
+        <action
+            android:id="@+id/action_descricaoProdFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_descricaoProdFragment_to_listProdutoFragment"
+            app:destination="@id/listProdutoFragment"
+            app:popUpTo="@id/listProdutoFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>

@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.uana.databinding.FragmentCadastrousuario1Binding
 import com.example.uana.model.Usuario
@@ -20,7 +21,7 @@ class CadastroUsuarioFragment : Fragment() {
 
     private lateinit var binding: FragmentCadastrousuario1Binding
     var formatDate = SimpleDateFormat("dd MM yyyy", Locale.ENGLISH)
-    private lateinit var mainViewModel: MainViewModel
+    private val mainViewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -168,14 +169,14 @@ class CadastroUsuarioFragment : Fragment() {
 
         val usuario = Usuario(
             0,
-            cpf.toInt(),
+            cpf.toLong(),
             nome,
             dataNasc,
             genero,
             email,
             "endereco",
             senha,
-            telefone.toInt()
+            telefone.toLong()
         )
         mainViewModel.addUsuario(usuario)
 
@@ -225,12 +226,10 @@ class CadastroUsuarioFragment : Fragment() {
 
     private fun validPassword(): String? {
         val passwordText = binding.editEmail.text.toString()
-        if (passwordText.length < 8) {
-            return "A senha deve conter no minimo 8 caracteres!"
+        if (passwordText.length < 6) {
+            return "A senha deve conter no minimo 6 caracteres!"
         }
-        if (!passwordText.matches(".*[A-Z].*".toRegex())) {
-            return "A senha deve conter pelo menos uma letra maiúscula!"
-        }
+
         if (!passwordText.matches(".*[a-z].*".toRegex())) {
             return "A senha deve conter pelo menos uma letra minúscula!"
         }

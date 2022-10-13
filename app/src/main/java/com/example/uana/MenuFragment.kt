@@ -31,6 +31,7 @@ class MenuFragment : Fragment() {
 
         binding.cardAddProduto.setOnClickListener{
 
+            mainViewModel.produtoSelecionar = null
             findNavController().navigate(R.id.action_menuFragment_to_formFragment)
 
         }

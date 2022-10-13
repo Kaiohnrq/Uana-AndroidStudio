@@ -44,22 +44,6 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             app:navGraph="@navigation/nav_graph" />
 
-        <ImageView
-            android:id="@+id/toolbar_img"
-            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:contentDescription="logobranco"
-            android:scaleType="centerInside"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logobranco"
-            tools:ignore="ImageContrastCheck"
-            tools:text="logo" />
-
         <com.google.android.material.bottomnavigation.BottomNavigationView
 
             android:id="@+id/bottomNavigationView"
