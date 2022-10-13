@@ -7,14 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 
 
-class RecuperarContaFragment : Fragment() {
+class SupportFragment : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recuperar_conta, container, false)
+        return inflater.inflate(R.layout.fragment_support, container, false)
     }
 
 

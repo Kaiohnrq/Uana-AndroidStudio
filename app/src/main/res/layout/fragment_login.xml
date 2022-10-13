@@ -4,22 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/unsplash_ww_tigwkcyc"
     tools:context=".MainActivity">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:contentDescription="@string/fundo"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/unsplash_ww_tigwkcyc"
-        tools:ignore="ImageContrastCheck" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -30,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/rectangle_61"
         tools:ignore="ImageContrastCheck" />
 
@@ -38,8 +24,8 @@
         android:id="@+id/buttonNovaConta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="27dp"
         android:fontFamily="@font/poppins"
         android:text="@string/novo_por_aqui_criar_conta_uan"
         android:textSize="12sp"
@@ -51,42 +37,25 @@
         tools:ignore="TextContrastCheck" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="64dp"
-        android:background="@color/invisible"
-        android:backgroundTint="@color/invisible"
-        android:fontFamily="@font/poppins"
-        android:gravity="center"
-        android:text="@string/entre_com_acesso_rapido"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switch1"
-        tools:ignore="TextContrastCheck" />
-
-    <TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="64dp"
         android:background="@color/invisible"
         android:backgroundTint="@color/invisible"
         android:fontFamily="@font/poppins"
         android:gravity="center"
         android:text="@string/seus_dados_ser_o_respeitados_de_acordo_com_nossa_pol_tica_de_privacidade_nada_ser_acessado_sem_sua_autorizacao"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNovaConta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView18" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonEntrar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -97,7 +66,7 @@
         android:textColor="@color/terracotta"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/textPassword"
         tools:ignore="TextContrastCheck" />
 
     <TextView
@@ -105,7 +74,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="64dp"
         android:background="@color/invisible"
         android:backgroundTint="@color/invisible"
@@ -116,7 +85,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
     <TextView
         android:id="@+id/textView5"
@@ -139,27 +108,27 @@
         tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/textEmailAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="64dp"
+        android:autofillHints=""
         android:backgroundTint="@color/white"
         android:ems="10"
         android:fontFamily="@font/poppins"
         android:hint="@string/insira_seu_cpf_ou_e_mail"
-        android:inputType="number|textEmailAddress"
+        android:inputType="textEmailAddress"
         android:textColorHint="@color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
-        tools:ignore="TouchTargetSizeCheck,TextContrastCheck"
-        android:autofillHints="" />
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/textPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -169,14 +138,14 @@
         android:ems="10"
         android:fontFamily="@font/poppins"
         android:hint="@string/digite_a_sua_senha"
+        android:importantForAutofill="no"
         android:inputType="textPassword"
         android:textColorHint="@color/white"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress"
-        tools:ignore="TouchTargetSizeCheck,TextContrastCheck"
-        android:importantForAutofill="no" />
+        app:layout_constraintTop_toBottomOf="@+id/textEmailAddress"
+        tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
 
     <Switch
         android:id="@+id/switch1"
@@ -184,8 +153,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="30dp"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintStart_toEndOf="@+id/buttonEntrar"
+        app:layout_constraintTop_toBottomOf="@+id/textPassword"
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
@@ -204,47 +173,17 @@
         app:layout_constraintBottom_toBottomOf="@+id/switch1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/switch1"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/textPassword"
         tools:ignore="TextContrastCheck" />
 
-    <ImageButton
-        android:id="@+id/imageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/facebook"
-        android:contentDescription="@string/facebook"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton2"
-        app:layout_constraintHorizontal_bias="0.525"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/facebook"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="116dp"
-        android:background="@drawable/google"
-        android:contentDescription="@string/google"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/google"
-        tools:ignore="TouchTargetSizeCheck,ImageContrastCheck" />
-
     <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        android:id="@+id/imageView18"
+        android:layout_width="180dp"
+        android:layout_height="160dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logobranco" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView2"
+        app:srcCompat="@drawable/logo_uana" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

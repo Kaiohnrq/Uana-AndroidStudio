@@ -6,9 +6,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.uana.MainActivity
 import com.example.uana.MainViewModel
+import com.example.uana.ShoppingCart
 import com.example.uana.databinding.CardLayoutBinding
+import com.example.uana.databinding.FragmentListProdutoBinding
+import com.example.uana.model.ItemDeCarrinho
 import com.example.uana.model.Produto
+import com.google.android.material.snackbar.Snackbar
 
 class ProdutoAdapter(
     val produtoClickListener: ProdutoClickListener,
@@ -53,7 +58,7 @@ class ProdutoAdapter(
             produtoClickListener.onProdutoClickListener(produto)
         }
 
-        holder.binding.button4.setOnClickListener {
+        holder.binding.buttonAdicionar.setOnClickListener {
             showAlertDialog(produto.id)
         }
 
@@ -66,6 +71,17 @@ class ProdutoAdapter(
     }
 
 
+    fun bindProduct(produto: Produto, holder: ProdutoViewHolder) {
+
+        holder.binding.buttonAdicionar.setOnClickListener { view ->
+
+            val item = ItemDeCarrinho(produto)
+
+            ShoppingCart.addItem(item)
+
+        }
+
+    }
 
     override fun getItemCount(): Int {
         return listProduto.size

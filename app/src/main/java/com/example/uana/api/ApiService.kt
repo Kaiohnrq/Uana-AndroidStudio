@@ -2,6 +2,7 @@ package com.example.uana.api
 
 import com.example.uana.model.Categoria
 import com.example.uana.model.Produto
+import com.example.uana.model.Usuario
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -42,5 +43,25 @@ interface ApiService {
     suspend fun deleteProduto(
         @Path("id") id: Long
     ): Response<Produto>
+
+    @GET("usuario/email/{email}")
+    suspend fun consultaUsuarioEmail(
+        @Path("email") email: String
+    ): Response<Usuario>
+
+    @GET("usuario/senha/{senha}")
+    suspend fun consultaUsuarioSenha(
+        @Path("senha") senha: String
+    ): Response<Usuario>
+
+    @POST("usuario")
+    suspend fun addUsuario(
+        @Body usuario: Usuario
+    ): Response<Usuario>
+
+    @PUT
+    suspend fun updateUsuario(
+        @Body usuario: Usuario
+    ): Response<Usuario>
 
 }

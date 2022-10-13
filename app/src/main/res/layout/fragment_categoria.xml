@@ -11,7 +11,7 @@
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="150dp"
         android:layout_marginBottom="30dp"
         android:text="@string/categorias"
         android:textColor="@color/terracotta_dark"
