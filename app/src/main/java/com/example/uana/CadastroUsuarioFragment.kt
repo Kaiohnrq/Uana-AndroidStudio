@@ -75,7 +75,7 @@ class CadastroUsuarioFragment : Fragment() {
 
     private fun submittForm() {
 
-        binding.nomeContainer.helperText = validNomeCompleto()
+        binding.nomeUsuarioContainer.helperText = validNomeCompleto()
         binding.emailContainer.helperText = validEmail()
         binding.senhaContainer.helperText = validPassword()
         binding.cpfContainer.helperText = validCpf()
@@ -83,7 +83,7 @@ class CadastroUsuarioFragment : Fragment() {
         binding.dataNascContainer.helperText = validDataNasc()
 
 
-        val validNome = binding.nomeContainer.helperText == null
+        val validNome = binding.nomeUsuarioContainer.helperText == null
         val validEmail = binding.emailContainer.helperText == null
         val validSenha = binding.senhaContainer.helperText == null
         val validCpf = binding.cpfContainer.helperText == null
@@ -99,8 +99,8 @@ class CadastroUsuarioFragment : Fragment() {
     private fun invalidForm() {
         var message = ""
 
-        if (binding.nomeContainer.helperText != null) {
-            message += "\n\nNome: " + binding.nomeContainer.helperText
+        if (binding.nomeUsuarioContainer.helperText != null) {
+            message += "\n\nNome: " + binding.nomeUsuarioContainer.helperText
         }
 
         if (binding.emailContainer.helperText != null) {
@@ -132,7 +132,7 @@ class CadastroUsuarioFragment : Fragment() {
 
     private fun enviarForm() {
 
-        val nome = binding.editNome.text.toString()
+        val nome = binding.editNomeUsuario.text.toString()
         val email = binding.editEmail.text.toString()
         val senha = binding.editSenha.text.toString()
         val cpf = binding.editCPF.text.toString()
@@ -141,7 +141,7 @@ class CadastroUsuarioFragment : Fragment() {
         val genero = binding.spinnerGenero.isClickable
 
 
-        var message = "Nome:" + binding.editNome.text
+        var message = "Nome:" + binding.editNomeUsuario.text
         message += "\nE-mail:" + binding.editEmail.text
         message += "\nSenha:" + binding.editSenha.text
         message += "\nCPF:" + binding.editCPF.text
@@ -151,14 +151,14 @@ class CadastroUsuarioFragment : Fragment() {
 
         AlertDialog.Builder(context).setTitle("Passo 1 Criado").setMessage(message)
             .setPositiveButton("Passo 1 Completado com Sucesso!") { _, _ ->
-                binding.editNome.text = null
+                binding.editNomeUsuario.text = null
                 binding.editEmail.text = null
                 binding.editSenha.text = null
                 binding.editCPF.text = null
                 binding.editdataNasc.text = null
                 binding.editTel.text = null
 
-                binding.nomeContainer.helperText = getString(R.string.Required)
+                binding.nomeUsuarioContainer.helperText = getString(R.string.Required)
                 binding.emailContainer.helperText = getString(R.string.Required)
                 binding.senhaContainer.helperText = getString(R.string.Required)
                 binding.cpfContainer.helperText = getString(R.string.Required)
@@ -185,15 +185,15 @@ class CadastroUsuarioFragment : Fragment() {
 
 
     private fun nomeCompletoFocusListener() {
-        binding.editNome.setOnFocusChangeListener { _, focused ->
+        binding.editNomeUsuario.setOnFocusChangeListener { _, focused ->
             if (!focused) {
-                binding.nomeContainer.helperText = validNomeCompleto()
+                binding.nomeUsuarioContainer.helperText = validNomeCompleto()
             }
         }
     }
 
     private fun validNomeCompleto(): String? {
-        val nomeText = binding.editNome.text.toString()
+        val nomeText = binding.editNomeUsuario.text.toString()
         if (nomeText == "" || nomeText.length < 3 || nomeText.length > 30) {
             return "Digite um nome válido!"
         }
